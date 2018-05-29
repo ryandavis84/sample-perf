@@ -1,0 +1,32 @@
+entity Partner {
+ 	name String
+}
+
+entity Customer {
+	name String
+}
+
+entity Endpoint {
+	name String
+}
+
+entity Event {
+	name String
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Partner{customer} to Customer,
+    Customer{endpoint} to Endpoint
+	Endpoint{event} to Event
+}
+
+
+
+// Set pagination options
+paginate Partner, Customer, Endpoint, Event with infinite-scroll
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
